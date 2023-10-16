@@ -1,2 +1,12 @@
 10/17  7주차
+
+객체에 대한 포인터
+Circle *p;
+p = &donut;
+d = p->getArea();    
+
+C언어에서 사용하는 포인터와 거의 똑같은 것 같다. int *p; 에서 데이터타입만 객체로 바뀌었을 뿐!
+
+
+
 this is test, note#7
