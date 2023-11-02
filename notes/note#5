@@ -30,10 +30,31 @@ Color a(BLUE), b(RED), c;
 1. 클래스의 멤버 함수
 class Color {
   ~~~
-  Coloroperator+ (Color op2);
+  Color operator+ (Color op2);
   bool operator== (Color op2);
 };
 
 
 2. 외부 함수로 구현되고 프렌드로 선언
-class Color 
+Color operator + (Color op1, Color p[2); //외부함수
+Color operator == (Color op1, Color p[2); //외부함수
+class Color {
+ ~~~
+ friend Color operator+ (Color op2);
+ friend bool operator== (Color op2);
+};
+
+a == b  (컴파일러)  a.==(b)
+인철 : 이런식으로 돌아가는지 모르고 있었다. 
+이걸 몰랐다는 게 부끄럽기도 하고 지금까지 대부분의 프로그래밍 수업에서 얼마나 대충 배웠는지 알 것 같다.
+가장 충격이었던 것은 후위연산자의 동작방식이다.
+
+printf("%d", a++) 를 처리할 때 그냥... 값을 먼저 넘겨주고 더하기 연산을 한다고 알고있었다.
+그렇게 배웠었고, 한 번도 의구심을 가져본 적 없었다. 
+생각해보면 방금 언급한 "먼저 넘겨주고 더하기 연산"은 불가능하다.
+모든 함수는 return을 하면 종료되기 때문이다
+
+호출되면 객체의 상태를 복사해놓고, 객체를 증가시킨 뒤 복사했던 값을 리턴하는 방식이었다.
+최인엽교수님과 진행하는 객체지향 수업에 대해 아주 높은 만족도를 느끼고 있다.
+그 이유는 이와 같이 내가 알고있다고 믿고 있었던 로직이었지만 실제로 보니 전혀 모르는 것들이 많았기 때문이다.
+
