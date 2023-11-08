@@ -28,7 +28,9 @@ A의 주소를 갖고있는 ChiledClass포인터 변수와 BaseClass포인터 �
 
 다운 캐스팅
 기본(부모) 클래스의 포인터가 파생 클래스의 포인터에 치환되는 것
-
+ChiledClass A;
+ChiledClass *Ap;
+BaseClass *pBase = &Ap;
 
 
 
