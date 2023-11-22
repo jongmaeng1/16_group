@@ -1,1 +1,85 @@
-make file
+함수의 파라미터 타입만 다르고
+구현부분이 완전히 똑같다면? -> 탬플릿하자!
+
+   tmeplate<class T> 
+{템플릿 키워드} < {제네릭 타입 키워드} {제네릭 타입} >
+
+template <class T> 
+void myswap(T & a, T & b)
+  T tmp;
+  tmp = a;
+  a = b;
+  b = tmp
+
+    ↑ 의 경우를 보면 T부분에 int, double, char 다 들어갈 수 있다.
+      이 모둔 경우의 수를 하나의 제네릭 변수로 일반화 한 것
+
+단 {함수}(T, T)해놓고 첫 번재는 int, 두 번째는 char로 호출하면 컴파일 오류가 난다.
+ -> 하나의 T로 두 개의 타입으로 구체화할 수 없기 때문 -> 구체화 오류
+
+[올바른 예시]
+#include <iostream> 
+using namespace std;
+template <class T> 
+T bigger(T a, T b) { // 두 개의 매개 변수를 비교하여 큰 값을 리턴 
+  if(a > b) 
+    return a; 
+  else
+    return b; }
+
+int main() {
+int a=20, b=50; 
+char c='a', d='z'; 
+cout << "bigger(20, 50)의 결과는 " << bigger(a, b) << endl; 
+cout << "bigger('a', 'z')의 결과는 " << bigger(c, d) << endl;
+}
+
+템플릿 함수와 중복 함수 중 중복함수가 우선적으로 바인딩됨
+
+제네릭 클래스는 제네릭 함수처럼 template<class T>를 선언 후 모든 타입을 T로 대체하면 된다
+
+[cout함수가 어떻게 파라미터를 쓰는가]
+cout << a << b << c ;
+스택 프레임을 만들어서 c, b, a순서로 집어넣고 a, b, c순서로 출력시킨다.
+따라서 파라미터가 어떠한 자료의 pop()인 경우 뒤에서 먼저 작동하기 때문에 유의해야함!
+
+
+STL(Standard Template Library 표준 템플릿 라이브러리)
+  -  컨테이너 : 템플릿 클래스
+  -  iterator : 컨테이너 원소에 대한 포인터
+  -  알고리즘 : 템플릿 함수
+
+컨테이너 
+데이터를 담아두는 자료 구조를 표현한 클래스임
+ex) 리스트, 큐 , 스택, 맵, 셋, 벡터
+
+
+
+vector 컨테이너 
+가변 길이 배열을 구현한 제네릭 클래스 
+개발자가 벡터의 길이에 대한 고민할 필요 없다
+
+인덱스는 0부터 시작 
+
+iterator 사용
+반복자라고 불린다
+컨테이너의 원소를 가리키는 포인터
+
+vector<int>:: iterator it;
+it = v.begin();
+처럼 구체적인 켄터이너를 지정하여 반복자 변수 생성
+
+map 컨테이너 
+
+ (‘키’, ‘값’)의 쌍을 원소로 저장하는 제네릭 컨테이너
+동일한 ‘키’를 가진 원소가 중복 저장되면 오류가 발생함
+
+ex)
+/ 맵 생성 Map<string, string> dic;    // 키는 영어 단어, 값은 한글 단어
+// 원소 저장 dic.insert(make_pair("love", "사랑"));       // ("love", "사랑") 저장 dic["love"] = "사랑";       // ("love", "사랑") 저장
+// 원소 검색 string kor = dic["love"];    // kor은 "사랑“ string kor = dic.at("love“);             // kor은 "사랑"
+
+알고리즘 
+전역 함수 
+어디서든 사용 가능
+iterator와 함께 작동
