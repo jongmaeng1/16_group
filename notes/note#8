@@ -48,12 +48,37 @@ istream : 문자 단위 입력 스트림
 ostream : 문자 단위 출력 스트림
 iotream : 문자 단위로 입출력을 동시에 할 수 있는 스트림
 
+ifstream(읽기), ofstream(쓰기), fstream(둘 다)
+파일에서 읽고 쓰는 기는을 가진 파일 입출력 스트림
 
+ostream 멤버 함수
+ostream& put(char ch)            char 하나 스트림에 출력
+ostream& write(char* str, int n) str 배열에서 n개의 문자 출력   
+ostream& flush()                 스트림 버퍼에 있는 내용 출력
 
-
-
-
-
+cout.put('H'); 
+cout.put('i');   혹은  cout.put('H').put('i'); 해도 된다
+-------------------------------------------------------------------
+int ch;  [int로 받기]
+while ((ch = cin.get()) != EOF) { //입력받고, 파일의 끝인지도 확인해줌
+		cout.put(ch);
+		if(ch == '\n') // <Enter>키가 입력되면 읽기 중단
+			break;         
+	}
+-------------------------------------------------------------------
+char ch;  [char로 받기]
+	while (true) {
+		cin.get(ch);
+		if (cin.eof()) break; // EOF만나면 종료
+		cout.put(ch);
+		if (ch == '\n') break; //<Enter> 눌리면 종료
+	}
+-------------------------------------------------------------------
+char str[10];
+cin.get(str, 10); //최대 9개의 문자를 읽고 끝에 '\0'을 붙여 str배열에 저장
+get()도중 <Enter>키 '\n'를 만날 때 읽기를 중단하고 리턴함.
+'\n'은 스트림 버퍼에 남아있음 -> 이후 get()으로 읽기를 시도하면 남은 '\n'키를 만나서 바로 리턴하여 무한루프에 빠질 수 있음
+이 문제 때문에 cin.get()이나 cin.gnore(1);를 통해 남아있던 '\n'를 읽어버려야 함
 
 
 
