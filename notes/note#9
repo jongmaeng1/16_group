@@ -19,4 +19,18 @@
 바이너리 I/O
   -  바이트 단위로 파일에 쓰기, 파일에서 읽기
   -  텍스트 파일과 바이너리 파일 모두 입출력 가능
-[둘의 차이점] : 개형 문자'\n'를 
+
+[둘의 차이점] : 개형 문자'\n'를 [추후 완료]
+
+ofstream fout;
+fout.open("song.txt"); // song.txt 파일 열기
+if(!fout) { // fout 스트림의 파일 열기가 실패한 경우
+// 파일 열기 실패를 처리하는 코드
+}
+int age = 21;
+char singer[] = "Kim";
+char song[] = "Yesterday";
+fout << age << '\n'; // 파일에 21과 '\n'을 기록한다.
+fout << singer << endl; // 파일에 "Kim"과 '\n'을 덧붙여 기록한다.
+fout << song << endl; // 파일에 "Yesterday"와 '\n'을 덧붙여 기록한다.
+fout.close();
