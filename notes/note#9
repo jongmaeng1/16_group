@@ -34,3 +34,4 @@ fout << age << '\n'; // 파일에 21과 '\n'을 기록한다.
 fout << singer << endl; // 파일에 "Kim"과 '\n'을 덧붙여 기록한다.
 fout << song << endl; // 파일에 "Yesterday"와 '\n'을 덧붙여 기록한다.
 fout.close();
+
